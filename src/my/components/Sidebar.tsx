@@ -1,21 +1,21 @@
 type SidebarProps = {
-    isOpen: boolean,
-    onClose: () => void
-}
+  isOpen: boolean;
+  onClose: () => void;
+};
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
       {/* Overlay escuro/desfocado para o mobile (clicar nele fecha o menu) */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
           onClick={onClose}
         />
       )}
 
       {/* Container da Sidebar */}
-      <aside 
+      <aside
         className={`
           /* Base (Mobile): Fixa, desliza da esquerda, fica por cima de tudo */
           fixed top-0 left-0 h-full z-50 w-64 p-5 flex flex-col gap-6 
@@ -27,11 +27,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           md:bg-white/15 md:backdrop-blur-md md:border md:border-white/40 md:rounded-3xl md:shadow-lg
           
           /* Lógica de abrir/fechar no mobile */
-          ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         {/* Botão de Fechar apenas no Mobile */}
-        <button 
+        <button
           onClick={onClose}
           className="md:hidden absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full border border-white/60 bg-glossy shadow-glossy text-white font-bold"
         >
@@ -59,6 +59,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           </button>
           <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
             <span>⚙️</span> Ajustes
+          </button>
+          <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
+            <span>❕</span> Sobre
           </button>
         </nav>
       </aside>

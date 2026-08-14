@@ -9,7 +9,10 @@ type TaskCardProps = {
 
 export function TaskCard({ title, checked, description, hour }: TaskCardProps) {
   return (
-    <article className="w-full p-5 bg-white/15 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg flex flex-col gap-3 hover:bg-white/20 transition-colors cursor-pointer">
+    <article
+      className="w-full p-5 bg-white/15 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg flex 
+    flex-col gap-3 hover:bg-white/20 transition-colors cursor-pointer"
+    >
       {/* Cabeçalho do Card */}
       <div className="flex justify-between items-start">
         <h3 className="text-white font-bold text-xl text-shadow-glossy">
@@ -35,7 +38,10 @@ export function TaskCard({ title, checked, description, hour }: TaskCardProps) {
           <span>🕒</span> {hour}
         </span>
 
-        <Button>{checked ? "Desconcluír" : "Concluír"}</Button>
+        <div className="space-x-3">
+          <Button>{checked ? "Desconcluír" : "Concluír"}</Button>
+          <Button>Excluir</Button>
+        </div>
       </div>
     </article>
   );
