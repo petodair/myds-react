@@ -18,7 +18,7 @@ export function TaskCard({ title, checked, description, hour }: TaskCardProps) {
 
         {/* Tag de Status Glossy */}
         <span className="px-3 py-1 rounded-full text-xs font-semibold text-white bg-glossy border border-white/60 shadow-glossy drop-shadow-md">
-          Em progresso
+          {checked ? "Conluído" : "Em progresso"}
         </span>
       </div>
 
@@ -35,7 +35,7 @@ export function TaskCard({ title, checked, description, hour }: TaskCardProps) {
           <span>🕒</span> {hour}
         </span>
 
-        <Button>Concluir</Button>
+        <Button>{checked ? "Desconcluír" : "Concluír"}</Button>
       </div>
     </article>
   );

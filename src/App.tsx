@@ -2,14 +2,17 @@ import { useState } from "react";
 import { Sidebar } from "./my/components/Sidebar";
 import { TaskCard } from "./my/components/TaskCard";
 import Button from "./my/components/Button";
+import { mockTasks } from "./service/TaskService";
+import type Task from "./types/Task";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const tasks: Task[] = mockTasks();
 
   return (
     <div
       className="min-h-screen flex justify-center items-start p-4 md:p-8 bg-cover bg-center bg-fixed bg-no-repeat"
-      style={{ backgroundImage: "url('/bg-1.png')" }}
+      style={{ backgroundImage: "url('/bg-2.jpg')" }}
     >
       <div className="w-full max-w-6xl flex flex-col md:flex-row gap-4 md:gap-8">
         {/* Header */}
@@ -49,18 +52,15 @@ function App() {
 
           {/* Lista de Tarefas */}
           <div className="flex flex-col gap-4">
-            <TaskCard
-              description="Verificar a nova implementação do Tailwind v4 e os componentes da sidebar."
-              hour="11:30"
-              checked={false}
-              title="Revisar Código React"
-            />
-            <TaskCard
-              description="Marcar reunião com a equipe sobre os próximos passos do projeto myds."
-              hour="15:00"
-              checked={false}
-              title="Marcar reunião"
-            />
+            {tasks.map((task) => (
+              <TaskCard
+                key={task.id}
+                description={task.description}
+                hour={task.hour}
+                checked={task.checked}
+                title={task.title}
+              />
+            ))}
           </div>
         </main>
       </div>
