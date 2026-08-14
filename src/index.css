@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+@theme {
+  --background-image-glossy: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.2) 49%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+
+  --shadow-glossy:
+    inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+@utility text-shadow-glossy {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
