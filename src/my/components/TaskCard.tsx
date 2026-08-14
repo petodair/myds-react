@@ -5,22 +5,33 @@ type TaskCardProps = {
   checked: boolean;
   description: string;
   hour: string;
+  setTaskToDelete: () => void;
+  setTaskToCheck: () => void;
 };
 
-export function TaskCard({ title, checked, description, hour }: TaskCardProps) {
+export function TaskCard({
+  title,
+  checked,
+  description,
+  hour,
+  setTaskToDelete,
+  setTaskToCheck,
+}: TaskCardProps) {
   return (
     <article
       className="w-full p-5 bg-white/15 backdrop-blur-md border border-white/40 rounded-2xl shadow-lg flex 
     flex-col gap-3 hover:bg-white/20 transition-colors cursor-pointer"
     >
-      {/* Cabeçalho do Card */}
       <div className="flex justify-between items-start">
         <h3 className="text-white font-bold text-xl text-shadow-glossy">
           {title}
         </h3>
 
-        {/* Tag de Status Glossy */}
-        <span className="px-3 py-1 rounded-full text-xs font-semibold text-white bg-glossy border border-white/60 shadow-glossy drop-shadow-md">
+        <span
+          className={`px-3 py-1 rounded-full text-xs font-semibold text-white 
+            ${checked ? "bg-linear-to-b from-emerald-400 to-emerald-600" : "bg-glossy"}
+           border border-white/60 shadow-glossy drop-shadow-md`}
+        >
           {checked ? "Conluído" : "Em progresso"}
         </span>
       </div>
@@ -39,8 +50,10 @@ export function TaskCard({ title, checked, description, hour }: TaskCardProps) {
         </span>
 
         <div className="space-x-3">
-          <Button>{checked ? "Desconcluír" : "Concluír"}</Button>
-          <Button>Excluir</Button>
+          <Button onClick={setTaskToCheck}>
+            {checked ? "Desconcluír" : "Concluír"}
+          </Button>
+          <Button onClick={setTaskToDelete}>Excluir</Button>
         </div>
       </div>
     </article>
