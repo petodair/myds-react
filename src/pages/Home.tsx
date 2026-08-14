@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Button from "../my/components/Button";
 import { TaskCard } from "../my/components/TaskCard";
 import { mockTasks } from "../service/TaskService";
@@ -11,7 +12,9 @@ function Home() {
         <h1 className="text-white text-2xl font-bold text-shadow-glossy">
           Tarefas de Hoje
         </h1>
-        <Button>+ Nova Tarefa</Button>
+        <Link to="/adicionar-tarefa">
+          <Button>+ Nova Tarefa</Button>
+        </Link>
       </header>
 
       {/* Lista de Tarefas */}

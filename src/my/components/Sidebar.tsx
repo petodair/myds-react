@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 type SidebarProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -23,7 +25,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           bg-white/20 backdrop-blur-xl border-r border-white/40 shadow-2xl rounded-r-3xl
           
           /* Desktop (md:): Volta a ser um item normal no layout e perde os arredondamentos da direita */
-          md:relative md:translate-x-0 md:flex md:w-64 md:h-auto md:min-h-[80vh]
+          md:relative md:translate-x-0 md:flex md:w-64 md:h-auto md:min-h-[80vh] md:max-h-[80vh]
           md:bg-white/15 md:backdrop-blur-md md:border md:border-white/40 md:rounded-3xl md:shadow-lg
           
           /* Lógica de abrir/fechar no mobile */
@@ -51,9 +53,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         <nav className="flex flex-col gap-3">
-          <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/60 bg-glossy shadow-glossy text-white font-medium hover:brightness-110 transition-all text-shadow-glossy">
-            <span>📅</span> Hoje
-          </button>
+          <Link to="/">
+            <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/60 bg-glossy shadow-glossy text-white font-medium hover:brightness-110 transition-all text-shadow-glossy">
+              <span>📅</span> Hoje
+            </button>
+          </Link>
           <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
             <span>📁</span> Projetos
           </button>
