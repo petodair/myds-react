@@ -3,6 +3,7 @@ import Button from "../../my/components/Button";
 import Input from "../../my/components/Input";
 import { saveTask } from "../../service/TaskService";
 import type Task from "../../types/Task";
+import { Link } from "react-router";
 
 function TaskForm() {
   const [title, setTitle] = useState<string>("");
@@ -40,7 +41,7 @@ function TaskForm() {
       className="w-full bg-white/10 backdrop-blur-md 
     border border-white/30 rounded-2xl p-6 shadow-sm"
     >
-      <div className="max-w-xl mx-auto space-y-4 mb-6">
+      <div className="max-w-xl mx-auto space-y-4 mb-2">
         <h1 className="text-2xl text-white font-semibold text-center">
           Adicionar tarefa
         </h1>
@@ -68,6 +69,9 @@ function TaskForm() {
           />
           <Button>Adicionar</Button>
         </form>
+        <Link to="/">
+          <Button>Voltar</Button>
+        </Link>
       </div>
     </div>
   );
