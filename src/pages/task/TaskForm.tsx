@@ -9,7 +9,7 @@ import { IMaskInput } from "react-imask";
 function TaskForm() {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [hour, setHour] = useState<string>("");
+  const [hour, setHour] = useState<string>("00:00");
 
   function handleSubmitForm(event: React.SubmitEvent) {
     event.preventDefault();
@@ -62,7 +62,7 @@ function TaskForm() {
               Horário:
             </label>
             <IMaskInput
-            className="border border-white/30 hover:border-white outline-none focus:border-white
+              className="border border-white/30 hover:border-white outline-none focus:border-white
         rounded-xl text-white caret-white"
               mask="00:00"
               lazy={false}
