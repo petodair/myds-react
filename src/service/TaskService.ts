@@ -1,4 +1,6 @@
+import axios from "axios";
 import type Task from "../types/Task";
+import type ApiResponse from "../types/ApiResponse";
 
 export function mockTasks(): Task[] {
   return [
@@ -52,4 +54,48 @@ export function mockTasks(): Task[] {
       checked: false,
     },
   ];
+}
+
+export async function fetchTasks(): Promise<Task[]> {
+  try {
+    const response = await axios.get("http://localhost:8080/v1/tasks");
+    const apiResponse: ApiResponse<Task[]> = response.data;
+    console.log(apiResponse.message);
+    return apiResponse.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
+export async function saveTask(
+  task: Omit<Task, "id" | "checked" | "daysOfWeek">,
+) {
+  try {
+    await axios.post("http://localhost:8080/v1/tasks", task);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteTask(id: number) {
+  try {
+    await axios.delete("http://localhost:8080/v1/tasks/" + id);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function updateTask(task: Task, id: number): Promise<Task> {
+  try {
+    const response = await axios.put(
+      "http://localhost:8080/v1/tasks/" + id,
+      task,
+    );
+    const apiResponse: ApiResponse<Task> = response.data;
+    return apiResponse.data;
+  } catch (error) {
+    console.log(error);
+    return task;
+  }
 }

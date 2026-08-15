@@ -1,33 +1,47 @@
 import { Link } from "react-router";
 import Button from "../my/components/Button";
 import { TaskCard } from "../my/components/TaskCard";
-import { mockTasks } from "../service/TaskService";
+import {
+  deleteTask,
+  fetchTasks,
+  updateTask,
+} from "../service/TaskService";
 import type Task from "../types/Task";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DeleteTaskModal from "./task/DeleteTaskModal";
 import CheckTaskModal from "./task/CheckTaskModal";
 
 function Home() {
   const [taskToDelete, setTaskToDelete] = useState<Task | null>(null);
   const [taskToCheck, setTaskToCheck] = useState<Task | null>(null);
-  const [tasks, setTasks] = useState<Task[]>(mockTasks());
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  useEffect(() => {
+    fetchTasks().then((tasks) => setTasks(tasks));
+  }, []);
 
   const handleConfirmDelete = () => {
     if (taskToDelete) {
-      const updatedTasks = tasks.filter((task) => task.id !== taskToDelete.id);
-      setTasks(updatedTasks);
-      setTaskToDelete(null);
+      deleteTask(taskToDelete.id).then(() => {
+        setTasks((prevTasks) =>
+          prevTasks.filter((task) => task.id !== taskToDelete.id),
+        );
+        setTaskToDelete(null);
+      });
     }
   };
 
   const handleConfirmCheck = () => {
     if (taskToCheck) {
-      console.log(taskToCheck.id);
-      const updatedTasks = tasks.map((task) =>
-        task.id === taskToCheck.id ? { ...task, checked: !task.checked } : task,
-      );
-      setTasks(updatedTasks);
-      setTaskToCheck(null);
+      taskToCheck.checked = !taskToCheck.checked;
+      updateTask(taskToCheck, taskToCheck.id).then((taskUpdated) => {
+        setTasks((prevTasks) =>
+          prevTasks.map((task) =>
+            task.id === taskUpdated.id ? taskUpdated : task,
+          ),
+        );
+        setTaskToCheck(null);
+      });
     }
   };
 

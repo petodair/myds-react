@@ -1,11 +1,39 @@
+import { use, useState } from "react";
 import Button from "../../my/components/Button";
 import Input from "../../my/components/Input";
+import { saveTask } from "../../service/TaskService";
+import type Task from "../../types/Task";
 
 function TaskForm() {
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [hour, setHour] = useState<string>("");
 
-    function handleSubmitForm(event:React.SubmitEvent){
-        event.preventDefault();
-    }
+  function handleSubmitForm(event: React.SubmitEvent) {
+    event.preventDefault();
+    const payload: Omit<Task, "id" | "checked" | "daysOfWeek"> = {
+      title: title,
+      description: description,
+      hour: hour,
+    };
+    saveTask(payload).then(() => {
+      setTitle("");
+      setDescription("");
+      setHour("");
+    });
+  }
+
+  function handleTitleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setTitle(event.target.value);
+  }
+
+  function handleDescriptionChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setDescription(event.target.value);
+  }
+
+  function handleHourChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setHour(event.target.value);
+  }
 
   return (
     <div
@@ -17,9 +45,27 @@ function TaskForm() {
           Adicionar tarefa
         </h1>
         <form className="space-y-4" onSubmit={handleSubmitForm}>
-          <Input label="Título" id="title" type="text" />
-          <Input label="Descrição" id="description" type="text" />
-          <Input label="Horário" id="hour" type="text" />
+          <Input
+            onChange={handleTitleChange}
+            value={title}
+            label="Título"
+            id="title"
+            type="text"
+          />
+          <Input
+            onChange={handleDescriptionChange}
+            value={description}
+            label="Descrição"
+            id="description"
+            type="text"
+          />
+          <Input
+            onChange={handleHourChange}
+            value={hour}
+            label="Horário"
+            id="hour"
+            type="text"
+          />
           <Button>Adicionar</Button>
         </form>
       </div>

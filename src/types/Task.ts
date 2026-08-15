@@ -4,4 +4,5 @@ export default interface Task{
     title: string;
     description: string;
     checked: boolean;
+    daysOfWeek?: string[];
 }
