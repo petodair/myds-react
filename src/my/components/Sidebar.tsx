@@ -7,8 +7,7 @@ type SidebarProps = {
 };
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
-
-  function generatePdf(){
+  function generatePdf() {
     generateTaskPdf().then();
   }
 
@@ -64,15 +63,20 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               <span>📅</span> Hoje
             </button>
           </Link>
-          <button onClick={generatePdf} className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
+          <button
+            onClick={generatePdf}
+            className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md"
+          >
             <span>📃</span> Gerar PDF
           </button>
           <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
             <span>⚙️</span> Ajustes
           </button>
-          <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
-            <span>❕</span> Sobre
-          </button>
+          <Link to="/sobre">
+            <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
+              <span>❕</span> Sobre
+            </button>
+          </Link>
         </nav>
       </aside>
     </>
