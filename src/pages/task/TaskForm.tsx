@@ -48,7 +48,7 @@ function TaskForm() {
           <Input
             onChange={handleTitleChange}
             value={title}
-            label="Título"
+            label="Nome"
             id="title"
             type="text"
           />

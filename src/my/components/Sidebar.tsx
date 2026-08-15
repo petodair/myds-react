@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { generateTaskPdf } from "../../service/TaskService";
 
 type SidebarProps = {
   isOpen: boolean;
@@ -6,6 +7,11 @@ type SidebarProps = {
 };
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
+
+  function generatePdf(){
+    generateTaskPdf().then();
+  }
+
   return (
     <>
       {/* Overlay escuro/desfocado para o mobile (clicar nele fecha o menu) */}
@@ -58,8 +64,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               <span>📅</span> Hoje
             </button>
           </Link>
-          <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
-            <span>📁</span> Projetos
+          <button onClick={generatePdf} className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
+            <span>📃</span> Gerar PDF
           </button>
           <button className="w-full flex items-center gap-3 px-4 py-2 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 transition-all text-white font-medium drop-shadow-md">
             <span>⚙️</span> Ajustes
