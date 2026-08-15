@@ -4,9 +4,10 @@ type InputProps = {
   type: React.HTMLInputTypeAttribute | undefined;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value?: string | number;
+  placeholder?:string;
 };
 
-function Input({ label, id, type, onChange, value }: InputProps) {
+function Input({ label, id, type, onChange, value, placeholder }: InputProps) {
   return (
     <div className="flex flex-col space-y-1">
       <label htmlFor={id} className="text-white font-semibold">
@@ -19,6 +20,7 @@ function Input({ label, id, type, onChange, value }: InputProps) {
         rounded-xl text-white caret-white"
         onChange={onChange}
         value={value}
+        placeholder={placeholder}
       />
     </div>
   );

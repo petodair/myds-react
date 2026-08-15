@@ -4,6 +4,7 @@ import Input from "../../my/components/Input";
 import { saveTask } from "../../service/TaskService";
 import type Task from "../../types/Task";
 import { Link } from "react-router";
+import { IMaskInput } from "react-imask";
 
 function TaskForm() {
   const [title, setTitle] = useState<string>("");
@@ -32,10 +33,6 @@ function TaskForm() {
     setDescription(event.target.value);
   }
 
-  function handleHourChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setHour(event.target.value);
-  }
-
   return (
     <div
       className="w-full bg-white/10 backdrop-blur-md 
@@ -60,13 +57,21 @@ function TaskForm() {
             id="description"
             type="text"
           />
-          <Input
-            onChange={handleHourChange}
-            value={hour}
-            label="Horário"
-            id="hour"
-            type="text"
-          />
+          <div className="flex flex-col space-y-1">
+            <label htmlFor={hour} className="text-white font-semibold">
+              Horário:
+            </label>
+            <IMaskInput
+            className="border border-white/30 hover:border-white outline-none focus:border-white
+        rounded-xl text-white caret-white"
+              mask="00:00"
+              lazy={false}
+              placeholderChar="0"
+              value={hour}
+              onAccept={(value) => setHour(value)}
+              id="hour"
+            />
+          </div>
           <Button>Adicionar</Button>
         </form>
         <Link to="/">
